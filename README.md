@@ -28,7 +28,7 @@ based on python2.7、 PaddlePaddle 0.11.0
 
 ## Start training the model
 
-###Define Neural Network Model
+### Define Neural Network Model
 
 该项目采用由牛津大学VGG(Visual Geometry Group)组于2014年ILSVRC提出的VGG神经网络。VGG神经模型的核心是五组卷积操作，每两组之间做Max-Pooling空间降维。同一组内采用多次连续的3X3卷积，卷积核的数目由较浅组的64增多到最深组的512，同一组内的卷积核数目是一样的。卷积之后接两层全连接层，之后是分类层。由于每组内卷积层的不同，有11、13、16、19层这几种模型，在本章文章中使用到的是VGG16。VGG神经网络也是在ImageNet上首次公开超过人眼识别的模型。
 
@@ -49,7 +49,7 @@ based on python2.7、 PaddlePaddle 0.11.0
 
 于`vgg.py`中定义了VGG神经网络模型，然后于`train.py`训练代码
 
-###Import Package Dependency
+### Import Package Dependency
 
 首先要先导入依赖包,其中就包含了最重要的PaddlePaddle的V2包
 
@@ -61,7 +61,7 @@ import numpy as np
 import os
 ```
 
-###Initialize Paddle
+### Initialize Paddle
 
 创建一个新类，并在其中初始化函数中是初始化PaddlePaddle
 
@@ -75,14 +75,14 @@ class TestCIFAR:
 
 ```
 
-###Obtain Parameter
+### Obtain Parameter
 
 训练参数可以通过使用损失函数创建一个训练参数，也可以通过使用之前训练好的参数初始化训练参数，使用训练好的参数来初始化训练参数，不仅可以使用之前的训练好的参数作为在此之上再继续训练，而且在某种情况下还防止出现浮点异常，比如SSD神经网络很容易出现浮点异常，就可以使用预训练的参数作为初始化训练参数，来解决出现浮点异常的问题。
 
 该函数可以通过输入是否是参数文件路径，或者是损失函数，如果是参数文件路径，就使用之前训练好的参数生产参数。如果不传入参数文件路径,那就使用传入的损失函数生成参数。
 
 
-###Create Trainer
+### Create Trainer
 
 创建训练器要3个参数,分别是损失函数,参数,优化方法.通过图像的标签信息和分类器生成损失函数。
 
@@ -90,7 +90,7 @@ class TestCIFAR:
 
 然后再生成优化方法.就可以创建一个训练器了.
 
-###Start Tranning
+### Start Tranning
 
 要启动训练要4个参数,分别是训练数据,训练的轮数,训练过程中的事件处理,输入数据和标签的对应关系.
 
@@ -125,7 +125,7 @@ Test with Pass 0, {'classification_error_evaluator': 0.8687999844551086}
 此时它测试输出的日志如下，可以看到看到预测错误率为`0.147799998528048`:
 `Test with Pass 56, {'classification_error_evaluator': 0.1477999985218048}`
 
-##Use Parameters to predict
+## Use Parameters to predict
 
 编写一个`infer.py`的Python程序文件编写下面的代码,用于测试数据。 
 
@@ -169,7 +169,7 @@ if __name__ == '__main__':
 
 `预测结果为:0,可信度为:0.965155`
 
-##Use Other Neural Netwoek Model
+## Use Other Neural Netwoek Model
 
 在上面的训练中,只是使用到了VGG神经模型,而目前的ResNet可以说最火的,因为该神经模型可以通过增加网络的深度达到提高识别率,而不会像其他过去的神经模型那样,当网络继续加深时,反而会损失精度.ResNet神经网络
 
